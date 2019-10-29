@@ -7,12 +7,16 @@
 
         <!-- Link to Bootstrap CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Link to Bootstrap Javascript CDN -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <!-- Link to jQuery CDN -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <!-- Link to Bootstrap CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        
     </head>
 
     <body>
@@ -121,7 +125,7 @@
                 </select>
                 <hr>
                 <br>
-                <button type="button" class="btn btn-primary" id="submit"><strong>SUBMIT</strong></button>   
+                <button type="button" class="btn btn-primary" id="submit" data-toggle="modal" data-target="#resultsModal"><strong>SUBMIT</strong></button>   
             <hr>
             <footer>
                 <div class="container">
@@ -129,10 +133,8 @@
                 </div>
             </footer>
         </div>
-        <div id="resultsModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-        
-                    <!-- Modal content-->
+            <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="friendModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
@@ -147,16 +149,11 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-        
                 </div>
-                <footer class="footer">
-                    <div class="container">
-                        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/Rnulanz/FriendFinder_App.git">GitHub
-                                Repo</a></p>
-                    </div>
-                </footer>
             </div>
 
+
+<!-- ============================================ -->
 <script type="text/javascript">
 
 $("#submit").on("click", function(event){
@@ -196,16 +193,16 @@ if(validateFunction() === true){
             $('#question10').val(),
         ]
     }
-var currentUrl = window.location.origin;
-$.post(currentUrl + "/api/friends", userData, function(data){
+
+$.post( "/api/friends", userData, function(data){
     if(data){
     // Grab the result from the AJAX post so that the best match's name and photo are displayed.
     $("#matchName").text(data.name);
     $("#matchImg").attr("src", data.photo);
-    $("#resultsModal").modal("toggle")
+    $("#resultsModal").addClass("show")
+    
 }
 });
-
         $("#name").val("");
         $("#photo").val("");
         $("#question1").val("");

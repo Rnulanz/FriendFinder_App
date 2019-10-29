@@ -15,8 +15,10 @@ module.exports = function(app){
             var scoreDiff = 0;
             for (var j = 0; j < userScore.length; j++) {
                 scoreDiff += (Math.abs(parseInt(friendData[i].score[j]) - parseInt(userScore[j])))
+                console.log(friendData[i].name + scoreDiff)
             }
             scoresArr.push(scoreDiff);
+            
         }
 
         // loop through ours scoresArr
@@ -24,12 +26,15 @@ module.exports = function(app){
             if (scoresArr[i] <= scoresArr[bestMatch]) {
                 bestMatch = i;
             }
+            console.log(bestMatch)
         }
 
         // return the best match
         var soulMate = friendData[bestMatch];
         res.json(soulMate);
         friendData.push(req.body)
+        console.log(friendData);
+        console.log(soulMate)
 
     });
 }
