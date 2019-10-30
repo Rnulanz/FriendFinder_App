@@ -49,7 +49,8 @@ Directories:
 
 Links:
 
-
+Hosted on Heroku: https://rocky-stream-14226.herokuapp.com/
+Clone the file from github : https://github.com/Rnulanz/FriendFinder_App.git
 
 
 
